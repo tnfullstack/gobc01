@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"regexp"
 	"strings"
 )
 
@@ -14,6 +15,9 @@ func main() {
 		fmt.Println("Please enter a search word.")
 		return
 	}
+
+	rx := regexp.MustCompile(`[^a-z]+`)
+
 	query := args[0]
 
 	in := bufio.NewScanner(os.Stdin)
@@ -22,11 +26,18 @@ func main() {
 	words := make(map[string]bool)
 	for in.Scan() {
 		word := strings.ToLower(in.Text())
-
+		word = rx.ReplaceAllString(word, "")
 		if len(word) > 2 {
 			words[word] = true
 		}
 	}
+
+	/*
+		// Print words map for testing purpse only
+		for k := range words {
+			fmt.Println(k)
+		}
+	*/
 
 	// query := "sun"
 	if words[query] {

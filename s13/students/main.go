@@ -95,9 +95,10 @@ func main() {
 		// Sort the temp sl (temp student list)
 		sort.Strings(sl)
 
-		fmt.Printf("~~~ %s students ~~~\n", search)
+		fmt.Printf("~~~ %s Students ~~~\n", strings.Title(search))
 		for _, n := range sl {
 			// Print the sorted student list
+			n = strings.Title(n)
 			fmt.Printf("%-5s + %s\n", "", n)
 		}
 		// exit program after print
@@ -106,20 +107,6 @@ func main() {
 	// Print this if house not exist
 	fmt.Printf("Sorry. I don't know anything about \"%s\"\n", search)
 
-	// Print the house data
-	printHouse(house)
-}
-
-// Print the map data (List of houses and students)
-func printHouse(h map[string][]string) {
-	// Print the all the house data
-	fmt.Printf("\n%-15s Student Name\n", "House")
-	fmt.Println(strings.Repeat("-", 30))
-	for h, s := range h {
-		for _, n := range s {
-			fmt.Printf("%-15s %s\n", h, string(n))
-		}
-	}
 }
 
 // Delete a house map[string][]string key
