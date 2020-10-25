@@ -5,7 +5,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"regexp"
 )
 
 // ---------------------------------------------------------
@@ -34,9 +33,6 @@ import (
 func main() {
 	var wc int
 
-	// remove all charactors except for letter a-z
-	rx := regexp.MustCompile(`[^a-z]+`)
-
 	// Reading file using bufio.NewScanner(os.Stdin())
 	in := bufio.NewScanner(os.Stdin)
 	in.Split(bufio.ScanWords)
@@ -49,8 +45,6 @@ func main() {
 		wc++
 		word := in.Text()
 
-		// Replace any charactor that are not a-z with empty string ""
-		word = rx.ReplaceAllString(word, "")
 		fmt.Printf("%-5d %s\n", wc, word)
 
 		// check if word exist
