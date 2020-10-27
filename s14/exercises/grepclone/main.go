@@ -46,7 +46,7 @@ func main() {
 	for in.Scan() {
 
 		line := strings.ToLower(in.Text())
-		// Print all lines for texting purpose only
+		// Print all lines for testing purpose only
 		// fmt.Println(line)
 
 		if strings.Contains(line, search) {

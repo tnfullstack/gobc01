@@ -1,0 +1,20 @@
+[
+	{
+		"username": "inanc",
+		"***": "1234"
+	},
+	{
+		"username": "dog",
+		"***": "42",
+		"perms": {
+			"admin": true
+		}
+	},
+	{
+		"username": "devil",
+		"***": "666",
+		"perms": {
+			"write": true
+		}
+	}
+]
