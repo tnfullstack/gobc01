@@ -24,12 +24,11 @@ type parser struct {
 
 func main() {
 
-	in := bufio.NewScanner(os.Stdin)
-
 	p := parser{
 		sum: make(map[string]result),
 	}
 
+	in := bufio.NewScanner(os.Stdin)
 	for in.Scan() {
 		p.lines++
 
@@ -54,7 +53,6 @@ func main() {
 
 		// Total visits from all websites
 		p.total += visits
-
 		p.sum[domain] = result{
 			domain: domain,
 			visits: visits + p.sum[domain].visits,

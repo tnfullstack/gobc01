@@ -3,24 +3,22 @@ package main
 
 import "fmt"
 
+// declare person struct
+type person struct {
+	firstName, lastName string
+	job, education      string
+	age, income         int
+}
+
 func main() {
 
-	// declare person struct
-	type person struct {
-		firstName, lastName, job, education string
-		age, income                         int
-	}
-
 	// declear two new persons chris and kim using person struct type
-	var chris person
+	chris := person{firstName: "Chris", lastName: "Nguyen", job: "", education: "", age: 50, income: 0}
 	var kim person
 
 	// Initialize fields values
-	chris.firstName = "Chris"
-	chris.lastName = "Nguyen"
 	kim.firstName = "Kim"
 	kim.lastName = "Nguyen"
-	chris.age = 50
 	kim.age = 49
 
 	// Declare a new person mike using struct literal

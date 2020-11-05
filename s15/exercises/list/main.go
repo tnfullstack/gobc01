@@ -54,17 +54,21 @@ func main() {
 		},
 	}
 
-	fmt.Printf("This game store has %d games.\n", len(games))
+	fmt.Printf("This game store has %d games. %#v\n", len(games), games)
+	// fmt.Printf("%d %d\n", games.item[1], games.item[2])
+
+	// id := games[0].id
+
+	fmt.Println("Test", games[0])
 
 	in := bufio.NewScanner(os.Stdin)
 
 	for {
-
 		fmt.Printf(`
 > list : list all games
-> ID   : list by ID
 > quit : exit program
 `)
+
 		if !in.Scan() {
 			break
 		}

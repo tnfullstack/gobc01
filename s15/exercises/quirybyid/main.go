@@ -57,7 +57,11 @@ func main() {
 
 	games := []game{
 		{
-			item:  item{id: 1, name: "god of war", price: 50},
+			item: item{
+				id:    1,
+				name:  "god of war",
+				price: 50,
+			},
 			genre: "action adventure",
 		},
 		{
@@ -72,21 +76,20 @@ func main() {
 
 	// Create to new map
 	searchID := make(map[int]game)
-	for _, id := range games {
-		searchID[id.id] = id
+	for _, g := range games {
+		searchID[g.id] = g
 	}
 
 	fmt.Printf("This game store has %d games.\n", len(games))
 
-	in := bufio.NewScanner(os.Stdin)
-
 	for {
-
 		fmt.Printf(`
 > list : list all games
 > id   : list by id
 > quit : exit program
 `)
+
+		in := bufio.NewScanner(os.Stdin)
 		if !in.Scan() {
 			break
 		}
@@ -102,11 +105,13 @@ func main() {
 		case "quit":
 			fmt.Println("Bye!")
 			return
+
 		case "list":
 			fmt.Printf("%-5s %-15s %-10s %s\n", "ID", "Name", "Price", "Genre"+"\n")
 			for _, g := range games {
 				fmt.Printf("%-5d %-15s %-10d %s\n", g.id, g.name, g.price, g.genre)
 			}
+
 		case "id":
 			if len(cmd) != 2 {
 				fmt.Println("Wrong id")
@@ -115,7 +120,7 @@ func main() {
 
 			id, err := strconv.Atoi(cmd[1])
 			if err != nil {
-				fmt.Println("wrong id")
+				fmt.Println("ID should be a number.")
 				continue
 			}
 

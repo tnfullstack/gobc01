@@ -8,5 +8,4 @@ func main() {
 	incrN()
 	incrN()
 	showN()
-
 }
