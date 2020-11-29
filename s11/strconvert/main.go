@@ -45,4 +45,5 @@ func main() {
 	fmt.Printf("1st rune    : %c\n", runes[0])
 	fmt.Printf("2nd rune    : %c\n", runes[1])
 	fmt.Printf("first five  : %c\n", runes[:5])
+	fmt.Printf("All runes   : %c\n", runes[:])
 }
