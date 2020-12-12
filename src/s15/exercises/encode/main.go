@@ -124,13 +124,11 @@ func main() {
 		}
 
 		switch cmd[0] {
-		case "quit":
-		case "q":
+		case "quit", "q":
 			fmt.Println("Program exited, Bye!")
 			return
 
-		case "list":
-		case "l":
+		case "list", "l":
 			fmt.Printf("%-5s %-15s %-10s %s\n", "ID", "Name", "Price", "Genre"+"\n")
 			for _, g := range games {
 				fmt.Printf("%-5d %-15s $%-10d %s\n", g.ID, g.Name, g.Price, g.Genre)
@@ -154,7 +152,7 @@ func main() {
 				continue
 			}
 			fmt.Printf("#%d: %-15q %-20s $%d\n", g.ID, g.Name, "("+g.Genre+")", g.Price)
-		case "save":
+		case "save", "s":
 			out, err := json.MarshalIndent(games, "", "\t")
 			if err != nil {
 				fmt.Println("Error:", err)
