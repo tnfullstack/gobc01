@@ -1,6 +1,15 @@
 // encode
 package main
 
+import (
+	"bufio"
+	"encoding/json"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
+
 // ---------------------------------------------------------
 // EXERCISE: Encode
 //
@@ -53,7 +62,106 @@ package main
 //
 // ---------------------------------------------------------
 
-func main() {
-	// use your solution from the previous exercise
+type item struct {
+	Name      string
+	ID, Price int
+}
 
+type game struct {
+	item
+	Genre string
+}
+
+func main() {
+
+	// Create to new map
+	games := []game{
+		{
+			item: item{
+				ID:    1,
+				Name:  "god of war",
+				Price: 50,
+			},
+			Genre: "action adventure",
+		},
+		{
+			item:  item{ID: 2, Name: "x-com", Price: 30},
+			Genre: "strategy",
+		},
+		{
+			item:  item{ID: 3, Name: "minecraft", Price: 20},
+			Genre: "sandbox",
+		},
+	}
+
+	searchID := make(map[int]game)
+	for _, g := range games {
+		searchID[g.ID] = g
+	}
+
+	fmt.Printf("This game store has %d games.\n", len(games))
+
+	for {
+		fmt.Printf(`
+> list : list all games
+> id   : list by id, example "id 2"
+> save : save games list to json
+> quit : exit program
+`)
+
+		in := bufio.NewScanner(os.Stdin)
+		if !in.Scan() {
+			break
+		}
+
+		fmt.Println()
+
+		cmd := strings.Fields(in.Text())
+		// fmt.Printf("%T, %v\n", cmd, len(cmd))
+
+		if len(cmd) == 0 {
+			continue
+		}
+
+		switch cmd[0] {
+		case "quit":
+		case "q":
+			fmt.Println("Program exited, Bye!")
+			return
+
+		case "list":
+		case "l":
+			fmt.Printf("%-5s %-15s %-10s %s\n", "ID", "Name", "Price", "Genre"+"\n")
+			for _, g := range games {
+				fmt.Printf("%-5d %-15s $%-10d %s\n", g.ID, g.Name, g.Price, g.Genre)
+			}
+
+		case "id":
+			if len(cmd) != 2 {
+				fmt.Println("Wrong id")
+				continue
+			}
+
+			num, err := strconv.Atoi(cmd[1])
+			if err != nil {
+				fmt.Println("ID should be a number.")
+				continue
+			}
+
+			g, ok := searchID[num]
+			if !ok {
+				fmt.Println("Sorry, the game is not available!")
+				continue
+			}
+			fmt.Printf("#%d: %-15q %-20s $%d\n", g.ID, g.Name, "("+g.Genre+")", g.Price)
+		case "save":
+			out, err := json.MarshalIndent(games, "", "\t")
+			if err != nil {
+				fmt.Println("Error:", err)
+				return
+			}
+			fmt.Println(string(out))
+			return
+		}
+	}
 }

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // ---------------------------------------------------------
 // EXERCISE: Warm Up
@@ -57,7 +60,9 @@ func main() {
 		},
 	}
 
-	fmt.Printf("%-5s %-15s %-10s %-20s\n", "ID", "Name", "Price", "Genre"+"\n")
+	fmt.Printf("%-5s %-15s %-10s %-20s\n", "ID", "Name", "Price", "Genre")
+	fmt.Println(strings.Repeat("-", 50))
+
 	for _, g := range games {
 		fmt.Printf("%-5d %-15s %-10d %-20s\n", g.id, g.name, g.price, g.genre)
 

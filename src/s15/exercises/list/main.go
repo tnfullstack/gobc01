@@ -54,12 +54,9 @@ func main() {
 		},
 	}
 
-	fmt.Printf("This game store has %d games. %#v\n", len(games), games)
-	// fmt.Printf("%d %d\n", games.item[1], games.item[2])
+	fmt.Printf("This game store has %d games.\n", len(games))
 
-	// id := games[0].id
-
-	fmt.Println("Test", games[0])
+	fmt.Println(games[0].id)
 
 	in := bufio.NewScanner(os.Stdin)
 
@@ -75,9 +72,11 @@ func main() {
 
 		switch in.Text() {
 		case "quit":
+		case "q":
 			fmt.Println("Bye!")
 			return
 		case "list":
+		case "l":
 			fmt.Printf("%-5s %-15s %-10s %-20s\n", "ID", "Name", "Price", "Genre"+"\n")
 			for _, g := range games {
 				fmt.Printf("%-5d %-15s %-10d %-20s\n", g.id, g.name, g.price, g.genre)

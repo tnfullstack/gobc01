@@ -55,6 +55,7 @@ type game struct {
 
 func main() {
 
+	// Create to new map
 	games := []game{
 		{
 			item: item{
@@ -74,7 +75,6 @@ func main() {
 		},
 	}
 
-	// Create to new map
 	searchID := make(map[int]game)
 	for _, g := range games {
 		searchID[g.id] = g
@@ -85,7 +85,7 @@ func main() {
 	for {
 		fmt.Printf(`
 > list : list all games
-> id   : list by id
+> id   : list by id, example "id 2"
 > quit : exit program
 `)
 
@@ -97,19 +97,23 @@ func main() {
 		fmt.Println()
 
 		cmd := strings.Fields(in.Text())
+		// fmt.Printf("%T, %v\n", cmd, len(cmd))
+
 		if len(cmd) == 0 {
 			continue
 		}
 
 		switch cmd[0] {
 		case "quit":
-			fmt.Println("Bye!")
+		case "q":
+			fmt.Println("Program exited, Bye!")
 			return
 
 		case "list":
+		case "l":
 			fmt.Printf("%-5s %-15s %-10s %s\n", "ID", "Name", "Price", "Genre"+"\n")
 			for _, g := range games {
-				fmt.Printf("%-5d %-15s %-10d %s\n", g.id, g.name, g.price, g.genre)
+				fmt.Printf("%-5d %-15s $%-10d %s\n", g.id, g.name, g.price, g.genre)
 			}
 
 		case "id":
@@ -118,13 +122,13 @@ func main() {
 				continue
 			}
 
-			id, err := strconv.Atoi(cmd[1])
+			num, err := strconv.Atoi(cmd[1])
 			if err != nil {
 				fmt.Println("ID should be a number.")
 				continue
 			}
 
-			g, ok := searchID[id]
+			g, ok := searchID[num]
 			if !ok {
 				fmt.Println("Sorry, the game is not available!")
 				continue
