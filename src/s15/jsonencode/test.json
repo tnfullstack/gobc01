@@ -1,19 +1,16 @@
 [
 	{
-		"username": "inanc",
-		"***": "1234"
+		"username": "inanc"
 	},
 	{
 		"username": "dog",
-		"***": "42",
-		"perms": {
+		"Permission": {
 			"admin": true
 		}
 	},
 	{
 		"username": "devil",
-		"***": "666",
-		"perms": {
+		"Permission": {
 			"write": true
 		}
 	}

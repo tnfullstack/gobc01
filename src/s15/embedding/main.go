@@ -11,11 +11,12 @@ func main() {
 
 	type book struct {
 		text
-		isbn string
+		title string
+		isbn  string
 	}
 
 	moby := book{
-		text: text{title: "moby dick", words: 206052},
+		text: text{title: "Moby Dick", words: 206052},
 		isbn: "1020305",
 	}
 	fmt.Printf("%s has %d words (isbn: %s)\n", moby.title, moby.words, moby.isbn)

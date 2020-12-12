@@ -16,10 +16,10 @@ type result struct {
 }
 
 type parser struct {
-	sum     map[string]result
-	domains []string
-	total   int
-	lines   int
+	sum     map[string]result // total visits per domain
+	domains []string          // unique domain names
+	total   int               // total to all domains
+	lines   int               // number of parsed lines
 }
 
 func main() {
@@ -28,6 +28,7 @@ func main() {
 		sum: make(map[string]result),
 	}
 
+	// read data from a file with standard input (command < fileName.txt)
 	in := bufio.NewScanner(os.Stdin)
 	for in.Scan() {
 		p.lines++
@@ -39,24 +40,34 @@ func main() {
 			return
 		}
 
-		domain := fields[0]
+		// store domain name from fields[0] to domain variable
+		d := fields[0]
 
-		visits, err := strconv.Atoi(fields[1])
-		if visits < 0 || err != nil {
-			fmt.Printf("Wrong input %d (line #%d)\n", visits, p.lines)
+		if _, ok := p.sum[d]; !ok {
+			p.domains = append(p.domains, d)
+		}
+
+		v, err := strconv.Atoi(fields[1])
+		if v < 0 || err != nil {
+			fmt.Printf("Wrong input %d (line #%d)\n", v, p.lines)
 			return
 		}
+		// fmt.Printf("%T %s %T %d\n", d, d, v, v)
 
-		if _, ok := p.sum[domain]; !ok {
-			p.domains = append(p.domains, domain)
+		// Store domain name and number of visit per website to parser {sum: map[string]}
+		/*
+			r := result{
+				domain: d,
+				visits: v + p.sum[d].visits,
+			}
+		*/
+
+		p.sum[d] = result{
+			domain: d,
+			visits: v + p.sum[d].visits,
 		}
 
-		// Total visits from all websites
-		p.total += visits
-		p.sum[domain] = result{
-			domain: domain,
-			visits: visits + p.sum[domain].visits,
-		}
+		p.total += v
 
 	}
 

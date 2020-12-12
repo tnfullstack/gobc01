@@ -14,6 +14,7 @@ func main() {
 
 	// declear two new persons chris and kim using person struct type
 	chris := person{firstName: "Chris", lastName: "Nguyen", job: "", education: "", age: 50, income: 0}
+
 	var kim person
 
 	// Initialize fields values
