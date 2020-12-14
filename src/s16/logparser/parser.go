@@ -23,10 +23,10 @@ func newParser() parser {
 	return parser{sum: make(map[string]result)}
 }
 
-func parse(p parser, line string) (parsed result, err error) {
+func parse(p parser, ln string) (parsed result, err error) {
 
 	// Parse the fields from log files
-	fields := strings.Fields(line)
+	fields := strings.Fields(ln)
 
 	if len(fields) < 2 {
 		err = fmt.Errorf("Wrong input %v (line #%d)", fields, p.lines)
@@ -40,8 +40,7 @@ func parse(p parser, line string) (parsed result, err error) {
 		err = fmt.Errorf("Wrong input: %q (line #%d)", fields[1], p.lines)
 		return
 	}
-
-	return
+	return parsed, err
 }
 
 func update(p parser, parsed result) parser {
@@ -63,6 +62,5 @@ func update(p parser, parsed result) parser {
 		domain: domain,
 		visits: visits + p.sum[domain].visits,
 	}
-
 	return p
 }

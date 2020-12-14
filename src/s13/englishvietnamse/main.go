@@ -1,83 +1,58 @@
-// englishvietnamese - English to Vietnamese dictionary program
 package main
 
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
-/*
-// inefficient version using basic slices english and vietnamese to hold words
-// this is O(n)
+const usage = `
+English to Vietnamese dictionary
+
+Usage: Enter command [enlish word] 
+Example: dict hello
+`
+
 func main() {
+
+	// Read command-line input
 	args := os.Args[1:]
+
+	// Varify input has two feilds (command + input)
 	if len(args) != 1 {
-		fmt.Println("Usage: [English] to [Vietnamese]")
+		fmt.Println(usage)
 		return
 	}
 
-	input := args[0]
+	query := args[0]
+	query = strings.ToLower(query)
+	fmt.Println("User query =", query)
 
-	english := []string{"good", "great", "perfect"}
-	vietnamese := []string{"tốt", "tuyệt", "hoàn hoả"}
-
-	for i, w := range english {
-		if input == w {
-			fmt.Printf("%q means %q\n", w, vietnamese[i])
-			return
-		}
-	}
-	fmt.Printf("%q not found\n", input)
-}
-*/
-
-// Rewrite the program using maps
-
-func main() {
-	args := os.Args[1:]
-	if len(args) != 1 {
-		fmt.Println("Usage: [English] to [Vietnamese]")
-		return
-	}
-
-	input := args[0]
-
+	// dictionary map that store [english] vietnamese key value pair
 	dict := map[string]string{
-		"good":    "tốt",
-		"great":   "tuyệt",
-		"perfect": "hoàn hảo",
-		"tasty":   "ăn cơm", // this is a wrong translation
+		"hello": "chào",
+		"world": "thế giới",
+		"up":    "lên",
+		"down":  "xuống",
+		"happy": "hạnh phúc",
 	}
 
-	// we can add or replace existing word
-	dict["up"] = "lên"
-	dict["down"] = "xuống"
-	dict["tasty"] = "ngon" // we can fix the wrong word by over write it
-	dict["empty"] = ""
+	fmt.Printf("What is in the dictionary: %#v %v\n", dict, len(dict))
 
-	// loop over the map
-	for k, v := range dict {
-		fmt.Printf("Dict data: %-5q means %q\n", k, v)
+	// search for key value pair
+	if val, ok := dict[query]; ok {
+		fmt.Println("Query result:")
+		fmt.Printf("%q means %q\n", query, val)
+	} else {
+		fmt.Printf("%s does not exist\n", query)
 	}
 
-	// Compare maps
-	dictcopy := dict
-	fmt.Println(dict, dictcopy) // these two looks they same but you can't campare them in current type
+	copied := map[string]string{"hello": "chào", "world": "thế giới"}
 
-	// Convert the two to slice string
 	first := fmt.Sprintf("%s", dict)
-	second := fmt.Sprintf("%s", dictcopy)
-	// Check the type and value
-	fmt.Printf("first %T %q\n", first, first)
-	fmt.Printf("second %T %q\n", second, second)
-	fmt.Println(first == second)
+	second := fmt.Sprintf("%s", copied)
 
-	// Look up a word
-	// Check for the existent of the word
-	if result, ok := dict[input]; ok {
-		fmt.Printf("%q means %q\n", input, result)
-		return
+	if first == second {
+		fmt.Printf("%s and %s are equal!\n", first, second)
 	}
-	fmt.Printf("%q not found\n", input)
-
 }
