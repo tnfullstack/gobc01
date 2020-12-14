@@ -51,29 +51,22 @@ import (
 //
 // ---------------------------------------------------------
 
-func main() {
-	// House        Student Name
-	// ---------------------------
-	// gryffindor   weasley
-	// gryffindor   hagrid
-	// gryffindor   dumbledore
-	// gryffindor   lupin
-	// hufflepuf    wenlock
-	// hufflepuf    scamander
-	// hufflepuf    helga
-	// hufflepuf    diggory
-	// ravenclaw    flitwick
-	// ravenclaw    bagnold
-	// ravenclaw    wildsmith
-	// ravenclaw    montmorency
-	// slytherin    horace
-	// slytherin    nigellus
-	// slytherin    higgs
-	// slytherin    scorpius
-	// bobo         wizardry
-	// bobo         unwanted
+// Program usage information print when no command-line argument found.
+const usage = `
+Usage: command [house name]
+here are the house's name: Gryffindor, Hufflepuf, Ravenclaw, Slytherin, and Bobo.
+`
 
-	// map for house data
+func main() {
+	// read command-line arguments
+	args := os.Args[1:]
+
+	if len(args) != 1 {
+		fmt.Println(usage)
+		return
+	}
+
+	// Create maps for House and Student Name
 	house := map[string][]string{
 		"gryffindor": {"weasley", "hagrid", "dumbledore", "lupin"},
 		"hufflepuf":  {"wenlock", "scamander", "helga", "diggory"},
@@ -82,37 +75,41 @@ func main() {
 		"bobo":       {"wizardry", "unwanted"},
 	}
 
-	// read command-line arguments
-	agrs := os.Args[1:]
+	// search for student and print result
+	search := strings.ToLower(args[0])
+	// students := []string{}
 
-	// print usage info when there is no command argument
-	if len(agrs) < 1 {
-		fmt.Println("Enter command [house name]")
-		fmt.Println("House Name: gryffindor, hufflepuf, ravenclaw, slytherin")
-		return
-	}
-
-	// Save the search data in search variable
-	search := agrs[0]
-
-	// convert search string to lower case
-	search = strings.ToLower(search)
-
-	// Delete house bobo if there is a search for it.
+	// Delete house if it not belong to Hogwarts
 	if search == "bobo" {
-		delete(house, "bobo")
-	}
-
-	// search for key value in house map
-	if name, ok := house[search]; ok {
-
-		// house
-		sort.Strings(name)
-		fmt.Printf("~~~~~ %s student ~~~~~\n", search)
-		for _, n := range name {
-			fmt.Printf("%-10s %s\n", "", n)
-		}
+		fmt.Printf("%s does not belong to Hogwarts, delete from list\n", search)
+		deleteHouse(house, search)
 		return
 	}
-	fmt.Println("We don't know anything about", search)
+
+	// If house exist and belong to Hogwarts print students in order
+	if h, ok := house[search]; ok {
+		sl := make([]string, len(h))
+
+		// Copy the original slice house's student to temp list sl
+		copy(sl, h)
+		// Sort the temp sl (temp student list)
+		sort.Strings(sl)
+
+		fmt.Printf("~~~ %s Students ~~~\n", strings.Title(search))
+		for _, n := range sl {
+			// Print the sorted student list
+			n = strings.Title(n)
+			fmt.Printf("%-5s + %s\n", "", n)
+		}
+		// exit program after print
+		return
+	}
+	// Print this if house not exist
+	fmt.Printf("Sorry. I don't know anything about \"%s\"\n", search)
+
+}
+
+// Delete a house map[string][]string key
+func deleteHouse(h map[string][]string, s string) {
+	delete(h, s)
 }

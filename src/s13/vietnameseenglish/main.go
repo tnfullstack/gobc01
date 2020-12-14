@@ -35,7 +35,15 @@ func main() {
 		"up":    "lên",
 		"down":  "xuống",
 		"happy": "hạnh phúc",
+		"laugh": "hạnh phúc",
 	}
+
+	// before delete map key/value
+	fmt.Printf("Before delelte key value pair %q\n", english)
+
+	// after delete map key/value entry
+	delete(english, "laugh")
+	fmt.Printf("After delelte key value pair %q\n", english)
 
 	// create a map to hold vietnamese to english dict
 	vietnamese := make(map[string]string)

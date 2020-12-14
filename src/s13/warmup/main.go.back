@@ -1,9 +1,7 @@
-// package main
+// warmup - warmup exercise
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 // ---------------------------------------------------------
 // EXERCISE: Warm-up
@@ -22,69 +20,69 @@ import (
 // ---------------------------------------------------------
 
 func main() {
-
-	/*
-		args := os.Args[1:]
-
-		if len(args) < 1 {
-			fmt.Println("Example: command [value]")
-			return
-		}
-
-		query := args[0]
-		query = strings.ToLower(query)
-	*/
-
 	// Hint: Store phone numbers as text
 
 	// #1
 	// Key        : Last name
 	// Element    : Phone number
-
-	phone := map[string]string{
-		"smith":    "123-111-1111",
+	phonebook := map[string]string{
+		"smith":    "123-111-1111, 123-777-8888",
 		"jones":    "123-222-3333",
 		"williams": "123-333-4444",
 		"taylor":   "123-444-5555",
 		"davis":    "123-555-6666",
-		"brown":    "123-666-7777",
+		"brown":    "123-666-7777, 213-999-0001",
 	}
-	fmt.Printf("%v\n", phone)
+	phonebook["Nguyen"] = "510-566-9795"
+
+	// Print map phonebook
+	fmt.Printf("%q\n", phonebook)
 
 	// #2
 	// Key        : Product ID
 	// Element    : Available / Unavailable
-	product := map[int]bool{
-		001: true,
-		002: true,
-		003: true,
-		004: true,
-		005: false,
+	products := map[int]bool{
+		0001: true,
+		0002: false,
 	}
-	fmt.Printf("%v\n", product)
+	products[0003] = true
+	fmt.Printf("%v\n", products)
+	fmt.Printf("Product ID: 0001 is in stock? %t\n", products[0001])
 
 	// #3
 	// Key        : Last name
 	// Element    : Phone numbers
-	phone1 := map[string][]string{
-		"smith":    {"123-111-1111", "555-555-5555"},
-		"jones":    {"123-222-3333"},
-		"williams": {"123-333-4444"},
-		"taylor":   {"123-444-5555"},
-		"davis":    {"123-555-6666"},
-		"brown":    {"123-666-7777"},
+	multiphones := map[string][]string{
+		"smith": {
+			"222-333-4444",
+			"222-333-4401",
+			"222-333-4401",
+		},
+		"jone": {
+			"222-333-5501",
+			"222-333-5502",
+		},
 	}
-	fmt.Printf("%v\n", phone1)
+	fmt.Printf("%v\n", multiphones)
 
 	// #4
 	// Key        : Customer ID
 	// Element Key:
 	//   Key: Product ID Element: Quantity
-	// val, _ := phone[query]
-	brasket := map[string]map[string]int{
-		"Mis. X":   {"Banana": 3, "Icescream": 2, "Egg": 5},
-		"Mr. Mike": {"Meat Ball": 5, "Apple": 4},
-		"Mr. Tim":  {"Orange": 5, "Mango": 6, "Cherry": 7},
+	customerID := map[string]map[string]int{
+		"C0001": map[string]int{
+			"P0001": 1,
+			"P0002": 2,
+			"P0003": 5,
+			"P0004": 2,
+			"P0005": 3,
+		},
+		"C0002": map[string]int{
+			"P0001": 3,
+			"P0002": 4,
+		},
 	}
-	fmt.Printf("%v\n", brasket)
+	customerID["C0003"] = map[string]int{}
+	fmt.Printf("%v\n", customerID)
+
 }
