@@ -1,4 +1,4 @@
-// bufioscanner - example on how bufio.scanner works
+// bufio.scanner Scan an input stream line by line into a buffer
 package main
 
 import (
@@ -8,18 +8,22 @@ import (
 )
 
 func main() {
+	// os.Stdin.Close()
 
+	// Setting default scanning line by line
 	in := bufio.NewScanner(os.Stdin)
 
-	var line int
+	var lines int
 
 	for in.Scan() {
-		line++
+		lines++
 	}
-	os.Stdin.Close()
-	fmt.Printf("Number of lines: %d\n", line)
 
+	fmt.Println("The number of lines counted:", lines)
+
+	// Checking for file err
 	if err := in.Err(); err != nil {
-		fmt.Println("ERROR:", err)
+		fmt.Println("Error:", err)
+		return
 	}
 }

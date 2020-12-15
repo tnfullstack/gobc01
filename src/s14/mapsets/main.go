@@ -1,49 +1,46 @@
-// mapsets -
+// Use maps as sets
 package main
 
 import (
 	"bufio"
 	"fmt"
 	"os"
-	"regexp"
 	"strings"
 )
 
 func main() {
+
 	args := os.Args[1:]
-	if len(args) != 1 {
-		fmt.Println("Please enter a search word.")
+
+	if len(args) < 1 {
+		fmt.Println("Usage: command < [filename]")
 		return
 	}
 
-	rx := regexp.MustCompile(`[^a-z]+`)
+	search := args[0]
 
-	query := args[0]
-
+	// default scan from stendard input
 	in := bufio.NewScanner(os.Stdin)
+
+	// setup scan for words from standard input
 	in.Split(bufio.ScanWords)
 
+	// Setup a words map variable
 	words := make(map[string]bool)
+
 	for in.Scan() {
+
 		word := strings.ToLower(in.Text())
-		word = rx.ReplaceAllString(word, "")
+
 		if len(word) > 2 {
 			words[word] = true
 		}
 	}
 
-	/*
-		// Print words map for testing purpse only
-		for k := range words {
-			fmt.Println(k)
-		}
-	*/
-
-	// query := "sun"
-	if words[query] {
-		fmt.Printf("The input contains %q.\n", query)
+	if words[search] {
+		fmt.Printf("The input contains %q.\n", search)
 		return
 	}
-	fmt.Printf("Sorry, the input does not contain %q\n", query)
+	fmt.Printf("The input does not contains %q.\n", search)
 
 }
