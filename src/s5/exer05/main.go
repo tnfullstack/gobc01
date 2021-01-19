@@ -3,16 +3,16 @@ package main
 
 import "fmt"
 
-type myType int
+// X Package level type
+type animal int
+
+var x animal
+
+var y int
 
 func main() {
 
-	var (
-		x myType
-		y int
-	)
-
-	fmt.Printf("value is x is %d\n", x)
+	fmt.Printf("Value of x = %v\n", x)
 	fmt.Printf("type of x is %T\n", x)
 
 	x = 55

@@ -16,8 +16,8 @@ func main() {
 	Z = true
 
 	s := "Something to test short declaration of type string"
-
-	fmt.Printf("%d %s %v\n", X, Y, Z)
-
 	fmt.Printf("s variable hold '%s'\n", s)
+
+	a := fmt.Sprintf("%d %s %v\n", X, Y, Z)
+	fmt.Println(a)
 }

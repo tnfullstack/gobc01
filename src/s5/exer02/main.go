@@ -11,7 +11,7 @@ var (
 )
 
 func main() {
-	fmt.Println(X)
-	fmt.Println(Y)
-	fmt.Println(Z)
+	fmt.Println("Zero value for int =", X)
+	fmt.Println("Zero value for string =", Y)
+	fmt.Println("Zero value for bool =", Z)
 }
