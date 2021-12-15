@@ -30,7 +30,7 @@ func main() {
 		userInput = strings.Replace(userInput, "\r\n", "", -1)
 		userInput = strings.Replace(userInput, "\n", "", -1)
 
-		if userInput == "q" || userInput == "quit" || userInput == "exit" {
+		if userInput == "quit" || userInput == "exit" {
 			break
 		}
 		fmt.Println(doctor.Response(userInput))
