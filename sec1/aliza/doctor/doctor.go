@@ -118,12 +118,12 @@ var responses = [][]string{
 // Intro returns the intro text
 func Intro() string {
     return `
-I'm Eliza
----------
-Talk to the program by typing in plain English, using normal upper
-and lower-case letters and punctuation.  Enter 'quit' when done.
-
-Hello. How are you feeling today?`
+    I'm Eliza
+    ---------
+    Talk to the program by typing in plain English, using normal upper
+    and lower-case letters and punctuation.  Enter 'quit' when done.
+    
+    Hello. How are you feeling today?`
 }
 
 // Response builds a response based on input and sends back string
@@ -139,12 +139,15 @@ func Response(userInput string) string {
     if err != nil {
         log.Fatal(err)
     }
+    // fmt.Println(reg)
 
     // strip out punctuation from user input
     userInput = reg.ReplaceAllString(userInput, " ")
+    // fmt.Println(userInput)
 
     // Loop through the matches list. If there's a match, strip it out. Change words in the remainder (if any)
     // of the input with the corresponding entry from the reflections map
+    // fmt.Println(len(matches)) => 40
     for i := 0; i < len(matches); i++ {
         match := matches[i]
         position := strings.Index(strings.ToLower(userInput), match)

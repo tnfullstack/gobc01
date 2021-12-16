@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/tnfullstack/gobc01/sec1/variable/doctor"
+	"github.com/tnfullstack/gobc01/sec1/aliza/doctor"
 )
 
 func main() {
