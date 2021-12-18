@@ -77,10 +77,10 @@ func (c *Car) CarInfo() {
 }
 
 func (c *Car) RaceAverageSpeed() float64 {
-	a := 0.0
+	sum := 0.0
 	l := len(c.Zero60)
 	for _, v := range c.Zero60 {
-		a += v
+		sum += v
 	}
-	return a / float64(l)
+	return sum / float64(l)
 }
