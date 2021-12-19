@@ -42,10 +42,10 @@ func Play() {
 	// write greeting
 	printIntroductoryParagraph()
 
-	stillInOffice := true
+	stillInOffice := true // 1
 
 	// play for 10 years, or until kicked out
-	for stillInOffice && year <= 10 {
+	for stillInOffice && year <= 10 { // 2
 		computerPrice = updateComputerPrice()
 		printSummary()
 		buyComputers()
@@ -55,7 +55,7 @@ func Play() {
 		marketCrashVictims = checkForCrash()
 		employees = employees - marketCrashVictims
 
-		if countStarvedEmployees() >= 45 {
+		if countStarvedEmployees() >= 45 { // 3
 			stillInOffice = false
 		}
 
@@ -139,7 +139,7 @@ func buyComputers() {
 	question := "How many computers will you buy?"
 	computersToBuy := getNumber(question)
 	cost := computerPrice * computersToBuy
-	for cost > cash {
+	for cost > cash { // 4
 		jest(fmt.Sprintf("We have but %d bitcoins of cash, not %d!", cash, cost))
 		computersToBuy := getNumber(question)
 		cost = computerPrice * computersToBuy
@@ -174,7 +174,7 @@ func payEmployees() {
 	question := "How much bitcoin will you distribute to the employees?"
 	cashPaidToEmployees = getNumber(question)
 
-	for cashPaidToEmployees > cash {
+	for cashPaidToEmployees > cash { // 5
 		jest(fmt.Sprintf("We have but %d bitcoins!", cash))
 		cashPaidToEmployees = getNumber(question)
 	}
@@ -191,11 +191,11 @@ func maintainComputers() {
 
 	for !haveGoodAnswer {
 		maintenanceAmount = getNumber(question)
-		if maintenanceAmount > cash {
+		if maintenanceAmount > cash { // 6
 			jest(fmt.Sprintf("We have but %d bitcoins left!", cash))
-		} else if maintenanceAmount > 2*computers {
+		} else if maintenanceAmount > 2*computers { // 7
 			jest(fmt.Sprintf("We have but %d computers available for mining!", computers))
-		} else if maintenanceAmount > 20*employees {
+		} else if maintenanceAmount > 20*employees { // 8
 			jest(fmt.Sprintf("We have but %d people to maintain the computers!", employees))
 		} else {
 			haveGoodAnswer = true
@@ -211,7 +211,7 @@ func checkForCrash() int {
 	victims := 0
 
 	diceRoll := rand.Intn(99) + 1
-	if diceRoll <= 15 {
+	if diceRoll <= 15 { // 9
 		color.Red("*** A terrible market crash wipes out half of the corporation's employees! ***")
 		victims = employees / 2
 	}
@@ -221,7 +221,7 @@ func checkForCrash() int {
 // countNewHires counts how many new employees joined the company
 func countNewHires() int {
 	var newEmployees int
-	if starved > 0 {
+	if starved > 0 { // 10
 		newEmployees = 0
 	} else {
 		newEmployees = (20*computers+cash)/(100*employees) + 1
@@ -232,7 +232,7 @@ func countNewHires() int {
 // checkForHackers checks if hackers get into the system, and determines how much they stole.
 func checkForHackers() {
 	diceRoll := rand.Intn(99) + 1
-	if diceRoll < 40 {
+	if diceRoll < 40 { // 11
 		percentHacked := 10 + rand.Intn(21)
 		color.Red("*** Hackers steal %d percent of your bitcoins! ***", percentHacked)
 		amountStolenByHackers = (percentHacked * cash) / 100
@@ -254,7 +254,7 @@ func countStarvedEmployees() int {
 	employeesPaid := cashPaidToEmployees / 20
 	percentStarved := 0
 
-	if employeesPaid >= employees {
+	if employeesPaid >= employees { // 12
 		starved = 0
 		fmt.Println("The corporation's employees are well fed and happy.")
 	} else {
@@ -270,7 +270,7 @@ func countStarvedEmployees() int {
 func printFinalScore() {
 	clearScreen()
 
-	if starved >= (45*employees)/100 {
+	if starved >= (45*employees)/100 { // 13
 		color.Red(`O Once-Great %s,
 %d of your team starved during the last year of your incompetent reign!
 The few who remain hacked your bank account and changed your password, effectively evicting you!
@@ -281,17 +281,17 @@ Your final rating: TERRIBLE.`, OGH, starved)
 
 	computerScore := computers
 
-	if 20*employees < computerScore {
+	if 20*employees < computerScore { // 14
 		computerScore = 20 * employees
 	}
 
-	if computerScore < 600 {
+	if computerScore < 600 { // 15
 		color.Cyan(`Congratulations, %s.
 You have ruled wisely,  but not well. You have led your people through ten difficult
 years, but your corporation assets have shrunk to a mere %d computers.
 
 Your final rating: ADEQUATE`, OGH, computers)
-	} else if computerScore < 800 {
+	} else if computerScore < 800 { // 16
 		color.Yellow(`Congratulations %s,
 You  have ruled wisely, and shown the online world that it's possible to make money in cryptocurrency.
 
@@ -308,7 +308,7 @@ Your final rating: SUPERB.`, OGH)
 // GetYesOrNo allows the player to try again, or quit
 func GetYesOrNo(q string) bool {
 	err := keyboard.Open()
-	if err != nil {
+	if err != nil { // 17
 		log.Fatal(err)
 	}
 
@@ -319,10 +319,10 @@ func GetYesOrNo(q string) bool {
 	for {
 		fmt.Println(q)
 		char, _, err := keyboard.GetSingleKey()
-		if err != nil {
+		if err != nil { // 18
 			log.Fatal(err)
 		}
-		if char == 'n' || char == 'N' {
+		if char == 'n' || char == 'N' { // 19
 			return false
 		}
 		return true
@@ -356,7 +356,7 @@ func getNumber(q string) int {
 		userInput = strings.Replace(userInput, "\r\n", "", -1)
 		userInput = strings.Replace(userInput, "\n", "", -1)
 		num, err := strconv.Atoi(userInput)
-		if err != nil {
+		if err != nil { // 20
 			fmt.Println("Please enter a whole number!")
 			continue
 		} else {
