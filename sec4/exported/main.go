@@ -65,9 +65,9 @@ func main() {
 
 	// Search a specific employee name
 	em := officeStaff.SearchEmployee("Hans")
-	fmt.Println(em.FirstName, "is found.")
+	fmt.Printf("we found %s in the system.\n", em.FirstName)
 
-	// Print Employee salary
+	// Print Employee with highest salary
 	hisaEmployee := officeStaff.HighSalary()
 	fmt.Println("The highest salary employee is", hisaEmployee)
 }

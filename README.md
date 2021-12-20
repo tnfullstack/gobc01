@@ -1,2 +1,2 @@
 # gobc01
-Go Complete Bootcamp 01
+Go Lang Programming Practice
