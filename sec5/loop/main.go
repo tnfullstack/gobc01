@@ -5,7 +5,7 @@ import "fmt"
 
 func main() {
 	// Declare a variable num and assing interger 100
-	num := 10
+	num := 100
 	sum := 0
 
 	// Adding 1 to 100 and print the all values using for loop
