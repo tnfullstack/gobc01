@@ -24,7 +24,8 @@ func main() {
 	playerChoice := ""
 	playerValue := -1
 
-	computerValue := rand.Intn(3)
+	// Read keyboard input from command-line terminal
+	reader := bufio.NewReader(os.Stdin)
 
 	// Clear the screen each time the game start
 	clearScreen()
@@ -33,15 +34,14 @@ func main() {
 	round := 3
 
 	// The for loop allow the game play upto the number of round defined above
-	for round >= 0 {
-		// Read keyboard input from command-line terminal
-		reader := bufio.NewReader(os.Stdin)
+	for round > 0 {
 
 		fmt.Print("Please enter rock, paper, or scissors -> ")
 		playerChoice, _ = reader.ReadString('\n')
 		playerChoice = strings.Replace(playerChoice, "\n", "", -1)
 
 		playerChoice = strings.ToLower(playerChoice)
+		fmt.Println()
 
 		// if and else if statements
 		if playerChoice == "rock" {
@@ -50,7 +50,14 @@ func main() {
 			playerValue = PAPER
 		} else if playerChoice == "scissors" {
 			playerValue = SCISSORS
+		} else {
+			playerValue = -1
 		}
+
+		// Print out the user input choise
+		fmt.Println("Player choice", strings.ToUpper(playerChoice))
+
+		computerValue := rand.Intn(3)
 
 		// switch statements practice
 		switch computerValue {
@@ -63,10 +70,6 @@ func main() {
 		default:
 		}
 
-		// Print out the user input choise
-		fmt.Println("Player choice", strings.ToUpper(playerChoice))
-		fmt.Println()
-
 		// Decide the winner
 		if playerValue == computerValue {
 			fmt.Println("It's a tide.")
@@ -78,12 +81,14 @@ func main() {
 				} else {
 					fmt.Println("Player wins.")
 				}
+
 			case PAPER:
 				if computerValue == SCISSORS {
 					fmt.Println("Computer wins.")
 				} else {
 					fmt.Println("Player wins.")
 				}
+
 			case SCISSORS:
 				if computerValue == ROCK {
 					fmt.Println("Computer wins.")
@@ -91,7 +96,7 @@ func main() {
 					fmt.Println("Player wins.")
 				}
 			default:
-				fmt.Println(playerChoice, "is not and option.")
+				fmt.Println(playerChoice, "is not the correct option.")
 			}
 		}
 
