@@ -3,8 +3,6 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/tnfullstack/gobc01/sec3/hammerbitcoin/game"
 )
 
 func main() {

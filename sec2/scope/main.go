@@ -3,8 +3,7 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/tnfullstack/gobc01/sec2/scope/packageone"
+	"go/gobc01/sec2/scope/packageone"
 )
 
 var myVar = "Package level in main."

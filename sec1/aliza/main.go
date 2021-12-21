@@ -3,10 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"go/gobc01/sec1/aliza/doctor"
 	"os"
 	"strings"
-
-	"github.com/tnfullstack/gobc01/sec1/aliza/doctor"
 )
 
 func main() {

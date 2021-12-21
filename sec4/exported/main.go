@@ -3,8 +3,7 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/tnfullstack/gobc01/sec3/exported/staff"
+	"go/gobc01/sec4/exported/staff"
 )
 
 var employees = []staff.Employee{
