@@ -8,13 +8,13 @@ import (
 func main() {
 
 	// Declare and initialize chan
-	displayChan := make(chan string)
-	roundChan := make(chan int)
+	displayReCh := make(chan string)
+	roundReCh := make(chan int)
 
-	// game stores channel and game.Round data
+	// game stores game.struct and game.Round data
 	game := game.Game{
-		DisplayChan: displayChan,
-		RoundChan:   roundChan,
+		DisplayChan: displayReCh,
+		RoundChan:   roundReCh,
 		Round: game.Round{
 			RoundNumber:   0,
 			PlayerScore:   0,
@@ -22,7 +22,7 @@ func main() {
 		},
 	}
 
-	// go routine
+	// go routine - call Round function from game package
 	go game.Rounds()
 
 	// ClearScress clears terminal before each game

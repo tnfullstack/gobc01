@@ -32,13 +32,9 @@ type Game struct {
 
 var reader = bufio.NewReader(os.Stdin)
 
+//
 func (g *Game) Rounds() {
 
-	// Process input using select channels
-
-	// Print Game information on screen
-
-	// Keep track of game information
 	for {
 		select {
 		case round := <-g.RoundChan:
@@ -48,7 +44,6 @@ func (g *Game) Rounds() {
 			fmt.Println(msg)
 		}
 	}
-
 }
 
 // ClearScreen clears the screen
