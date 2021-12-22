@@ -29,7 +29,7 @@ func main() {
 	game.ClearScreen()
 
 	// Print game info
-	game.PrintInfo()
+	game.PrintIntro()
 
 	for {
 		game.RoundChan <- 1
