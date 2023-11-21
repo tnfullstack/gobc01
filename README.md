@@ -1,2 +1,2 @@
-# gobc01
-Go Lang Programming Practice
+# Go Standard Library
+Go Lang Programming Practice with Go Standard Library
