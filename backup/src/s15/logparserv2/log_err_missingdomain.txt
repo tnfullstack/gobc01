@@ -1,8 +1,0 @@
- 50
-google.com 34
-ebay.com 50
-amazon.com 30
-facebook.com 20
-google.com 50
-amazon.com 30
-facebook.com 20

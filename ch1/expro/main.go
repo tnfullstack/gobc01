@@ -1,3 +1,4 @@
+// Calling an external process
 package main
 
 import (
@@ -9,7 +10,7 @@ import (
 func main() {
 	prcRun("ls", "-la")
 	fmt.Println("-----------------------")
-	prcStart("lsb", "-la")
+	prcStart("ls", "-a")
 }
 
 func prcRun(cmd, flag string) {

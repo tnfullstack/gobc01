@@ -1,3 +1,4 @@
+// Handling operating system signals
 package main
 
 import (
