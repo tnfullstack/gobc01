@@ -8,7 +8,7 @@ import (
 
 func main() {
 	const testStr = "Mary*had,a%little_lam"
-	const testStr2 = "Dang!Cong&San^Viet@Nam#Muon$Nam."
+	const testStr2 = "Dang!Cong&San^Viet@Nam#Muon$Nam.(Muon Nam)?"
 
 	regexpCompiled := regexp.MustCompile("[*,%_!&@#$^()]{1}")
 
